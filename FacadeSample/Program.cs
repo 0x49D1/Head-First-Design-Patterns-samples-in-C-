@@ -9,6 +9,10 @@ namespace FacadeSample
     {
         static void Main(string[] args)
         {
+            // initiate components
+            //HomeTheaterFacade homeTheaterFacade = new HomeTheaterFacade();
+            //homeTheaterFacade.WatchMovie("Titanic");
+            //homeTheaterFacade.EndMovie();
         }
     }
 }
