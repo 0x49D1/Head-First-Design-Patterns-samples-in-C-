@@ -9,12 +9,12 @@ namespace FacadeSample
     {
         public void On()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Tuner is ON");
         }
 
         public void Off()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Tuner is OFF");
         }
 
         public void SetAm()

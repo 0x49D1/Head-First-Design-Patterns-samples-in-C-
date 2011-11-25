@@ -9,15 +9,13 @@ namespace FacadeSample
     {
         public void On()
         {
-            throw new NotImplementedException();
         }
 
         public void Off()
         {
-            throw new NotImplementedException();
         }
 
-        public void Dim()
+        public void Dim(int dimParameter)
         {
         }
 

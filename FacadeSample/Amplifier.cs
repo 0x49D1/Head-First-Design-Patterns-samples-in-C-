@@ -13,16 +13,17 @@ namespace FacadeSample
 
         public void On()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Amplifier is ON");
         }
 
         public void Off()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Amplifier is OFF");
         }
 
         public void SetCD(string cd)
         {
+
         }
 
         public void SetDVD(string dvd)
