@@ -1,0 +1,521 @@
+﻿http://www.dofactory.com/Patterns/PatternAdapter.aspx
+
+definition
+Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+
+sample code in C#
+This structural code demonstrates the Adapter pattern which maps the interface of one class onto another so that they can work together. These incompatible classes may come from different libraries or frameworks. 
+
+// Adapter pattern -- Structural example 
+using System; 
+
+namespace DoFactory.GangOfFour.Adapter.Structural
+
+{
+
+  /// <summary>
+
+  /// MainApp startup class for Structural
+
+  /// Adapter Design Pattern.
+
+  /// </summary>
+
+  class MainApp
+
+  {
+
+    /// <summary>
+
+    /// Entry point into console application.
+
+    /// </summary>
+
+    static void Main()
+
+    {
+
+      // Create adapter and place a request
+
+      Target target = new Adapter();
+
+      target.Request();
+
+ 
+
+      // Wait for user
+
+      Console.ReadKey();
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Target' class
+
+  /// </summary>
+
+  class Target
+
+  {
+
+    public virtual void Request()
+
+    {
+
+      Console.WriteLine("Called Target Request()");
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Adapter' class
+
+  /// </summary>
+
+  class Adapter : Target
+
+  {
+
+    private Adaptee _adaptee = new Adaptee();
+
+ 
+
+    public override void Request()
+
+    {
+
+      // Possibly do some other work
+
+      //  and then call SpecificRequest
+
+      _adaptee.SpecificRequest();
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Adaptee' class
+
+  /// </summary>
+
+  class Adaptee
+
+  {
+
+    public void SpecificRequest()
+
+    {
+
+      Console.WriteLine("Called SpecificRequest()");
+
+    }
+
+  }
+
+}
+
+This real-world code demonstrates the use of a legacy chemical databank. Chemical compound objects access the databank through an Adapter interface. 
+
+// Adapter pattern -- Real World example 
+
+using System;
+namespace DoFactory.GangOfFour.Adapter.RealWorld
+
+{
+
+  /// <summary>
+
+  /// MainApp startup class for Real-World 
+
+  /// Adapter Design Pattern.
+
+  /// </summary>
+
+  class MainApp
+
+  {
+
+    /// <summary>
+
+    /// Entry point into console application.
+
+    /// </summary>
+
+    static void Main()
+
+    {
+
+      // Non-adapted chemical compound
+
+      Compound unknown = new Compound("Unknown");
+
+      unknown.Display();
+
+ 
+
+      // Adapted chemical compounds
+
+      Compound water = new RichCompound("Water");
+
+      water.Display();
+
+ 
+
+      Compound benzene = new RichCompound("Benzene");
+
+      benzene.Display();
+
+ 
+
+      Compound ethanol = new RichCompound("Ethanol");
+
+      ethanol.Display();
+
+ 
+
+      // Wait for user
+
+      Console.ReadKey();
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Target' class
+
+  /// </summary>
+
+  class Compound
+
+  {
+
+    protected string _chemical;
+
+    protected float _boilingPoint;
+
+    protected float _meltingPoint;
+
+    protected double _molecularWeight;
+
+    protected string _molecularFormula;
+
+ 
+
+    // Constructor
+
+    public Compound(string chemical)
+
+    {
+
+      this._chemical = chemical;
+
+    }
+
+ 
+
+    public virtual void Display()
+
+    {
+
+      Console.WriteLine("\nCompound: {0} ------ ", _chemical);
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Adapter' class
+
+  /// </summary>
+
+  class RichCompound : Compound
+
+  {
+
+    private ChemicalDatabank _bank;
+
+ 
+
+    // Constructor
+
+    public RichCompound(string name)
+
+      : base(name)
+
+    {
+
+    }
+
+ 
+
+    public override void Display()
+
+    {
+
+      // The Adaptee
+
+      _bank = new ChemicalDatabank();
+
+ 
+
+      _boilingPoint = _bank.GetCriticalPoint(_chemical, "B");
+
+      _meltingPoint = _bank.GetCriticalPoint(_chemical, "M");
+
+      _molecularWeight = _bank.GetMolecularWeight(_chemical);
+
+      _molecularFormula = _bank.GetMolecularStructure(_chemical);
+
+ 
+
+      base.Display();
+
+      Console.WriteLine(" Formula: {0}", _molecularFormula);
+
+      Console.WriteLine(" Weight : {0}", _molecularWeight);
+
+      Console.WriteLine(" Melting Pt: {0}", _meltingPoint);
+
+      Console.WriteLine(" Boiling Pt: {0}", _boilingPoint);
+
+    }
+
+  }
+
+ 
+
+  /// <summary>
+
+  /// The 'Adaptee' class
+
+  /// </summary>
+
+  class ChemicalDatabank
+
+  {
+
+    // The databank 'legacy API'
+
+    public float GetCriticalPoint(string compound, string point)
+
+    {
+
+      // Melting Point
+
+      if (point == "M")
+
+      {
+
+        switch (compound.ToLower())
+
+        {
+
+          case "water": return 0.0f;
+
+          case "benzene": return 5.5f;
+
+          case "ethanol": return -114.1f;
+
+          default: return 0f;
+
+        }
+
+      }
+
+      // Boiling Point
+
+      else
+
+      {
+
+        switch (compound.ToLower())
+
+        {
+
+          case "water": return 100.0f;
+
+          case "benzene": return 80.1f;
+
+          case "ethanol": return 78.3f;
+
+          default: return 0f;
+
+        }
+
+      }
+
+    }
+
+ 
+
+    public string GetMolecularStructure(string compound)
+
+    {
+
+      switch (compound.ToLower())
+
+      {
+
+        case "water": return "H20";
+
+        case "benzene": return "C6H6";
+
+        case "ethanol": return "C2H5OH";
+
+        default: return "";
+
+      }
+
+    }
+
+ 
+
+    public double GetMolecularWeight(string compound)
+
+    {
+
+      switch (compound.ToLower())
+
+      {
+
+        case "water": return 18.015;
+
+        case "benzene": return 78.1134;
+
+        case "ethanol": return 46.0688;
+
+        default: return 0d;
+
+      }
+
+    }
+
+  }
+
+}
+
+http://sourcemaking.com/design_patterns/adapter
+
+Intent
+01
+Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.
+Wrap an existing class with a new interface.
+Impedance match an old component to a new system
+Problem
+02
+
+An “off the shelf” component offers compelling functionality that you would like to reuse, but its “view of the world” is not compatible with the philosophy and architecture of the system currently being developed.
+Discussion
+03
+
+Reuse has always been painful and elusive. One reason has been the tribulation of designing something new, while reusing something old. There is always something not quite right between the old and the new. It may be physical dimensions or misalignment. It may be timing or synchronization. It may be unfortunate assumptions or competing standards.
+04
+
+It is like the problem of inserting a new three-prong electrical plug in an old two-prong wall outlet – some kind of adapter or intermediary is necessary.
+ 
+05
+
+Adapter is about creating an intermediary abstraction that translates, or maps, the old component to the new system. Clients call methods on the Adapter object which redirects them into calls to the legacy component. This strategy can be implemented either with inheritance or with aggregation.
+06
+
+Adapter functions as a wrapper or modifier of an existing class. It provides a different or translated view of that class.
+Structure
+07
+
+Below, a legacy Rectangle component’s display() method expects to receive “x, y, w, h” parameters. But the client wants to pass “upper left x and y” and “lower right x and y”. This incongruity can be reconciled by adding an additional level of indirection – i.e. an Adapter object.
+ 
+
+08
+
+The Adapter could also be thought of as a “wrapper”.
+ 
+
+
+Example
+09
+
+The Adapter pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients. Socket wrenches provide an example of the Adapter. A socket attaches to a ratchet, provided that the size of the drive is the same. Typical drive sizes in the United States are 1/2” and 1/4”. Obviously, a 1/2” drive ratchet will not fit into a 1/4” drive socket unless an adapter is used. A 1/2” to 1/4” adapter has a 1/2” female connection to fit on the 1/2” drive ratchet, and a 1/4” male connection to fit in the 1/4” drive socket.
+ 
+
+
+Check list
+10
+Identify the players: the component(s) that want to be accommodated (i.e. the client), and the component that needs to adapt (i.e. the adaptee).
+Identify the interface that the client requires.
+Design a “wrapper” class that can “impedance match” the adaptee to the client.
+The adapter/wrapper class “has a” instance of the adaptee class.
+The adapter/wrapper class “maps” the client interface to the adaptee interface.
+The client uses (is coupled to) the new interface
+Rules of thumb
+11
+Adapter makes things work after they’re designed; Bridge makes them work before they are.
+Bridge is designed up-front to let the abstraction and the implementation vary independently. Adapter is retrofitted to make unrelated classes work together.
+Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator provides an enhanced interface.
+Adapter is meant to change the interface of an existing object. Decorator enhances another object without changing its interface. Decorator is thus more transparent to the application than an adapter is. As a consequence, Decorator supports recursive composition, which isn’t possible with pure Adapters.
+Facade defines a new interface, whereas Adapter reuses an old interface. Remember that Adapter makes two existing interfaces work together as opposed to defining an entirely new one.
+
+using System;
+
+  class MainApp
+  {
+    static void Main()
+    {
+      // Create adapter and place a request 
+      Target target = new Adapter();
+      target.Request();
+
+      // Wait for user 
+      Console.Read();
+    }
+  }
+
+  // "Target" 
+  class Target
+  {
+    public virtual void Request()
+    {
+      Console.WriteLine("Called Target Request()");
+    }
+  }
+
+  // "Adapter" 
+  class Adapter : Target
+  {
+    private Adaptee adaptee = new Adaptee();
+
+    public override void Request()
+    {
+      // Possibly do some other work 
+      // and then call SpecificRequest 
+      adaptee.SpecificRequest();
+    }
+  }
+
+  // "Adaptee" 
+  class Adaptee
+  {
+    public void SpecificRequest()
+    {
+      Console.WriteLine("Called SpecificRequest()");
+    }
+  }
