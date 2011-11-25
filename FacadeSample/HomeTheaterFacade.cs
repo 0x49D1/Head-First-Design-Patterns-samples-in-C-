@@ -34,5 +34,14 @@ namespace FacadeSample
             Screen = screen;
             Popper = popper;
         }
+
+        public void WatchMovie(string movie)
+        {
+            Console.WriteLine("Get ready to watch movie...");
+            Popper.On();
+            Popper.Pop();
+            Lights.Dim(10);
+            Screen.Down();
+        }
     }
 }
