@@ -42,6 +42,27 @@ namespace FacadeSample
             Popper.Pop();
             Lights.Dim(10);
             Screen.Down();
+            Projector.On();
+            Projector.WideScreenMode();
+            Amp.On();
+            Amp.SetDVD(movie);
+            Amp.SetSurroundSound();
+            Amp.SetVolume(5);
+            Dvd.On();
+            Dvd.Play();
+        }
+
+        public void EndMovie()
+        {
+            Console.WriteLine("Shutting down the move theater...");
+            Popper.Off();
+            Lights.On();
+            Screen.Up();
+            Projector.Off();
+            Amp.Off();
+            Dvd.Stop();
+            Dvd.Eject();
+            Dvd.Off();
         }
     }
 }
