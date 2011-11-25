@@ -44,8 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DuckAdapter.cs" />
-    <Compile Include="IDuck.cs" />
-    <Compile Include="ITurkey.cs" />
+    <Compile Include="Interfaces\IDuck.cs" />
+    <Compile Include="Interfaces\ITurkey.cs" />
     <Compile Include="MallardDuck.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
