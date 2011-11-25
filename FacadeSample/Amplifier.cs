@@ -21,11 +21,11 @@ namespace FacadeSample
             throw new NotImplementedException();
         }
 
-        public void SetCD()
+        public void SetCD(string cd)
         {
         }
 
-        public void SetDVD()
+        public void SetDVD(string dvd)
         {
         }
 
