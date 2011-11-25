@@ -46,6 +46,7 @@
     <Compile Include="Amplifier.cs" />
     <Compile Include="CDPlayer.cs" />
     <Compile Include="DVDPlayer.cs" />
+    <Compile Include="HomeTheaterFacade.cs" />
     <Compile Include="Interfaces\ILevel.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\ISwitch.cs" />
