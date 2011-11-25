@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FacadeSample
 {
-    class Amplifier:ISwitch
+    class Amplifier : ISwitch
     {
         public Tuner tuner;
         public DVDPlayer dvdPlayer;
@@ -42,8 +42,9 @@ namespace FacadeSample
         {
         }
 
-        public void SetVolume()
+        public void SetVolume(int volumeLevel)
         {
+            Console.WriteLine("Volume was set on {0}", volumeLevel);
         }
 
     }
