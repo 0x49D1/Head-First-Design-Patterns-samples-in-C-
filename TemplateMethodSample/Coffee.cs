@@ -5,34 +5,16 @@ using System.Text;
 
 namespace TemplateMethodSample
 {
-    class Coffee
+    class Coffee : CoffeineBeverage
     {
-        public void PrepareReceipe()
-        {
-            BoilWater();
-            BrewCoffeeGrinds();
-            PourInCup();
-            AddSugarAndMilk();
-        }
-
-        private void AddSugarAndMilk()
+        public override void AddCondiments()
         {
             Console.WriteLine("Adding Sugar and Milk");
         }
 
-        private void PourInCup()
-        {
-            Console.WriteLine("Puring into cup");
-        }
-
-        private void BrewCoffeeGrinds()
+        public override void Brew()
         {
             Console.WriteLine("Drippin Coffee through filter");
-        }
-
-        private void BoilWater()
-        {
-            Console.WriteLine("Boiling Water");
         }
     }
 }
