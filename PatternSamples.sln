@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterSample", "AdapterSam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacadeSample", "FacadeSample\FacadeSample.csproj", "{76EDD9FB-0094-488D-91B0-22E3CCFB6285}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMethodSample", "TemplateMethodSample\TemplateMethodSample.csproj", "{4ABB2A06-BC21-416E-BB1A-36C4F33E0ABF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,6 +21,10 @@ Global
 		{76EDD9FB-0094-488D-91B0-22E3CCFB6285}.Debug|x86.Build.0 = Debug|x86
 		{76EDD9FB-0094-488D-91B0-22E3CCFB6285}.Release|x86.ActiveCfg = Release|x86
 		{76EDD9FB-0094-488D-91B0-22E3CCFB6285}.Release|x86.Build.0 = Release|x86
+		{4ABB2A06-BC21-416E-BB1A-36C4F33E0ABF}.Debug|x86.ActiveCfg = Debug|x86
+		{4ABB2A06-BC21-416E-BB1A-36C4F33E0ABF}.Debug|x86.Build.0 = Debug|x86
+		{4ABB2A06-BC21-416E-BB1A-36C4F33E0ABF}.Release|x86.ActiveCfg = Release|x86
+		{4ABB2A06-BC21-416E-BB1A-36C4F33E0ABF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
